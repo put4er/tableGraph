@@ -1,0 +1,43 @@
+<table class="table" >
+  <thead>
+  <tr>
+    <td>
+      <button class="btn-primary" (click)="Refresh()">Обновить таблицу</button>
+    </td>
+    <td>
+      <div class="dropdown">
+        <a class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+          Восстановить поля
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <p class="dropdown-item" *ngFor="let row of deleteRows; let i = index" (click)="pasteRows(row, i)">{{row.name}}</p>
+        </div>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <th (click)="sort('name')">Показатель</th>
+    <th (click)="sort('today')">Сегодня</th>
+    <th (click)="sort('yesterday')">Вчера</th>
+    <th (click)="sort('week')">Этот день неделю назад</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td></td>
+    <td class="chart" colspan="2">
+      <canvas id="canvas">{{ chart }}</canvas>
+    </td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr *ngFor="let header of tableInfo; let i = index;"  (click)="deleteRow(i)">
+    <td scope="col">{{header.name}}</td>
+    <td scope="col">{{header.today}}</td>
+    <td scope="col">{{header.yesterday}}</td>
+    <td scope="col">{{header.week}}</td>
+  </tr>
+  </tbody>
+</table>
+
